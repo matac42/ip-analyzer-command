@@ -1,4 +1,4 @@
-package main
+package analyzer
 
 import (
 	"fmt"
@@ -11,15 +11,8 @@ import (
 	"github.com/mdlayher/arp"
 )
 
-var (
-	duration = 100 * time.Microsecond
-
-	iface = "br348"
-
-	networkIP = "10.100.0.0/24"
-)
-
-func main() {
+func Analyze(timeout int, iface string, networkIP string) {
+	duration := time.Duration(timeout) * time.Microsecond
 
 	// Request hardware address for IP address
 	re := regexp.MustCompile(`\/\d*`)
@@ -35,7 +28,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	broadcast, err := netip.ParseAddr("10.100.0.255")
+	broadcast, err := netip.ParseAddr("192.168.1.255")
 	if err != nil {
 		log.Fatal(err)
 	}
