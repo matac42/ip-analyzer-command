@@ -1,4 +1,6 @@
-# IP Analyzer
+# IP Analyzer Command
+
+Command version of [ip-analyzer](https://github.com/matac42/ip-analyzer)
 
 This project is incomplete.
 
