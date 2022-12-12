@@ -36,13 +36,11 @@ func Analyze(timeout int, iface string, networkIP string) {
 	}
 
 	broadcast, err := netip.ParseAddr(address.AddrArray2String(address.CalcBroadCastAddr(address.AddrString2AddrArray(networkIP), address.Prefix2AddrArray(prefix))))
-	fmt.Println("broadcast: ", broadcast)
 	if err != nil {
 		log.Fatal(err)
 	}
 	ip = ip.Next()
 	var wg sync.WaitGroup
-	fmt.Println(math.Pow(2, float64(32-prefix)))
 	wg.Add(int(math.Pow(2, float64(32-prefix))) - 2)
 	for ip.Less(broadcast) {
 		go resolveMAC(iface, duration, ip, &wg)
