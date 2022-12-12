@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/matac42/ip-analyzer/address"
 	"github.com/mdlayher/arp"
 )
 
@@ -28,7 +29,8 @@ func Analyze(timeout int, iface string, networkIP string) {
 		log.Fatal(err)
 	}
 
-	broadcast, err := netip.ParseAddr("192.168.1.255")
+	broadcast, err := netip.ParseAddr(address.AddrArray2String(address.CalcBroadCastAddr(address.AddrString2AddrArray(networkIP), address.AddrString2AddrArray("255.255.255.0"))))
+	fmt.Println("broadcast: ", broadcast)
 	if err != nil {
 		log.Fatal(err)
 	}
