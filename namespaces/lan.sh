@@ -34,7 +34,7 @@ ip netns exec node3 ip link set lo up
 # アドレスを設定する
 ip netns exec node1 ip a add 192.168.1.1/24 dev node1-veth0 
 ip netns exec node2 ip a add 192.168.1.2/24 dev node2-veth0 
-ip netns exec node3 ip a add 192.168.1.3/24 dev node3-veth0 
+ip netns exec node3 ip a add 192.168.1.254/24 dev node3-veth0 
 
 # ブリッジ(ハブ)を作成する
 ip netns exec bridge ip link add dev br0 type bridge
