@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 
 	"github.com/matac42/ip-analyzer/analyzer"
 )
@@ -19,6 +18,5 @@ func main() {
 	flag.StringVar(&networkIP, "n", "", "network IP address")
 
 	flag.Parse()
-	fmt.Println(duration, iface, networkIP)
 	analyzer.Analyze(duration, iface, networkIP)
 }

@@ -16,19 +16,17 @@ import (
 )
 
 func Analyze(timeout int, iface string, networkIP string) {
-	duration := time.Duration(timeout) * time.Microsecond
+	duration := time.Duration(timeout) * time.Millisecond
 
 	// Request hardware address for IP address
 	re := regexp.MustCompile(`\/\d*`)
 	networkAddress := re.ReplaceAllString(networkIP, "")
-	fmt.Println("networkAddress: ", networkAddress)
 
 	re = regexp.MustCompile(`^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\/`)
 	prefix, err := strconv.Atoi(re.ReplaceAllString(networkIP, ""))
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("prefix: ", prefix)
 
 	ip, err := netip.ParseAddr(networkAddress)
 	if err != nil {
